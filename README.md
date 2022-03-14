@@ -1,5 +1,9 @@
 # sre-tools-for-working
 I'm building a Docker image with important tools for SRE.
+# Build Image
+docker build -t image-name .
+# Run Image with name and env-file
+docker run --name sre-tools-eflorencio --env-file ./user-config.env -dit sre-tools:latest
 
 Any suggestions are welcome.
 
@@ -12,7 +16,7 @@ helm3 - ok
 python3 - ok
 golang - pending
 ansible - ok
-terraform (tfenv) - (Verificar)
+terraform (tfenv) - TODO: atualizar versão do terraform
 awscli - (Verificar versão)
 google cloud sdk - ok
 --------------

@@ -14,7 +14,7 @@ ENV GCLOUD_VERSION 334.0.0-0
 ENV HELM_VERSION v3.8.1
 ENV KUBECTL_VERSION v1.18.5
 ENV KUBETOOLS_VERSION v0.9.4
-ENV TERRAFORM_VERSION 0.15.4
+ENV TERRAFORM_VERSION 1.1.7
 ENV TERRAFORM_SHA256SUM ddf9b409599b8c3b44d4e7c080da9a106befc1ff9e53b57364622720114e325c
 RUN apt-get update \
 	&& apt-get install --no-install-recommends -y \
@@ -53,18 +53,18 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 	&& apt-get install google-cloud-sdk=${GCLOUD_VERSION} -y \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN curl https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz \
+RUN curl -LO https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz \
 	&& tar -zxvf helm-${HELM_VERSION}-linux-amd64.tar.gz \
-	&& chmod +x helm \
+	&& chmod +x linux-amd64/helm \
 	&& mv linux-amd64/helm /usr/local/bin/helm
 
 RUN curl -LO https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx \
 	&& chmod +x kubectx \
-	&& mv kubectx /usr/local/bin/kubectx
+	&& mv kubectx /usr/local/bin/
 
 RUN curl -LO https://raw.githubusercontent.com/ahmetb/kubectx/master/kubens \
-	&& chmod +x kubectx \
-	&& mv kubens /usr/local/bin/kubens
+	&& chmod +x kubens \
+	&& mv kubens /usr/local/bin/
 
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
 	&& chmod +x ./kubectl \
