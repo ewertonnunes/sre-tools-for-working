@@ -1,8 +1,8 @@
 # sre-tools-for-working
 I'm building a Docker image with important tools for SRE.
-# Build Image
-docker build -t image-name .
-# Run Image with name and env-file
+# Build Image 
+docker build -t sre-tools .
+# Run Image with name and env-file (put your configuratios profile here.)
 docker run --name sre-tools-eflorencio --env-file ./user-config.env -dit sre-tools:latest
 
 Any suggestions are welcome.

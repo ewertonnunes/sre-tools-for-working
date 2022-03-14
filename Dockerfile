@@ -1,16 +1,10 @@
 
 FROM ubuntu:20.04
 WORKDIR /cloud
-# ARG UID
-# ARG USER_NAME
-# ARG GID
-# ARG GROUP_NAME
-
-#User variables:
-ENV UID
-ENV USER_NAME
-ENV GID
-ENV GROUP_NAME
+ARG UID=1000
+ARG USER_NAME=eflorencio
+ARG GID=1000
+ARG GROUP_NAME=eflorencio
 
 RUN if ! id ${USER_NAME}; then groupadd -r -g ${GID} ${GROUP_NAME} && useradd -r -g ${GROUP_NAME} -u ${UID} ${USER_NAME}; fi
 RUN mkdir -p /home/${USER_NAME}
