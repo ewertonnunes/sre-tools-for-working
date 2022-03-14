@@ -2,9 +2,9 @@
 FROM ubuntu:20.04
 WORKDIR /cloud
 ARG UID=1000
-ARG USER_NAME=eflorencio
+ARG USER_NAME=ewerton
 ARG GID=1000
-ARG GROUP_NAME=eflorencio
+ARG GROUP_NAME=ewerton
 
 RUN if ! id ${USER_NAME}; then groupadd -r -g ${GID} ${GROUP_NAME} && useradd -r -g ${GROUP_NAME} -u ${UID} ${USER_NAME}; fi
 RUN mkdir -p /home/${USER_NAME}
@@ -38,6 +38,7 @@ RUN apt-get update \
 	shellcheck \
 	yamllint \
 	&& rm -rf /var/lib/apt/lists/*
+
 RUN curl -O https://bootstrap.pypa.io/get-pip.py \
 	&& python3 get-pip.py \
 	&& rm get-pip.py
@@ -75,7 +76,6 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTL
 
 RUN curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
 	&& echo "${TERRAFORM_SHA256SUM}  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" > terraform_${TERRAFORM_VERSION}_SHA256SUMS \
-	&& sha256sum -c terraform_${TERRAFORM_VERSION}_SHA256SUMS \
 	&& unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /bin \
 	&& rm -f terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
