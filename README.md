@@ -3,7 +3,6 @@ I'm building a Docker image with important tools for SRE.
 
 Any suggestions are welcome.
 
-## Docker image com as ferramentas necessarias.
 ```html
 git - ok
 kubectl - ok
