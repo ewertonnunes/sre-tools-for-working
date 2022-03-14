@@ -1,12 +1,20 @@
 
 FROM ubuntu:20.04
 WORKDIR /cloud
-ARG UID
-ARG USER_NAME
-ARG GID
-ARG GROUP_NAME
+# ARG UID
+# ARG USER_NAME
+# ARG GID
+# ARG GROUP_NAME
+
+#User variables:
+ENV UID
+ENV USER_NAME
+ENV GID
+ENV GROUP_NAME
+
 RUN if ! id ${USER_NAME}; then groupadd -r -g ${GID} ${GROUP_NAME} && useradd -r -g ${GROUP_NAME} -u ${UID} ${USER_NAME}; fi
 RUN mkdir -p /home/${USER_NAME}
+
 ENV HOME /home/${USER_NAME}
 ENV ANSIBLE_VERSION 2.9.8
 ENV AWS_CLI_VERSION 1.18.57
@@ -24,6 +32,7 @@ RUN apt-get update \
 	net-tools \
 	gnupg2 \
 	groff \
+    iputils-ping \
 	jq \
 	netcat \
 	openssh-client \
